@@ -24,7 +24,7 @@ A real-time condition monitoring system that bridges the gap between **Operation
 <img width="1915" height="770" alt="temperature chart2" src="https://github.com/user-attachments/assets/c3075562-3448-40d3-82b2-dd5a21ad1dc6" />
 
 
-## 🔧 How to Run
+##  How to Run
 1. Import predictive-maintenance-workflow.json (The Logic) and machine-simulator.json (The Sensor) into your n8n instance.
 2. Set up a local MQTT broker (Mosquitto).
 3. Configure your Google Cloud Credentials.
