@@ -23,7 +23,7 @@ A real-time condition monitoring system that bridges the gap between **Operation
 
 
 ## 🔧 How to Run
-1. Import `predictive-maintenance-workflow.json` into your n8n instance.
+1. Import predictive-maintenance-workflow.json (The Logic) and machine-simulator.json (The Sensor) into your n8n instance.
 2. Set up a local MQTT broker (Mosquitto).
 3. Configure your Google Cloud Credentials.
 4. Activate the "Simulator" workflow to start streaming data.
