@@ -2,7 +2,10 @@
 
 A real-time condition monitoring system that bridges the gap between **Operational Technology (OT)** and **Information Technology (IT)**. This project simulates an industrial press, monitors telemetry via MQTT, and triggers automated alerts when thresholds are breached.
 
-<img width="7011" height="1811" alt="IIoT Predictive Maintenance Digital Twin" src="https://github.com/user-attachments/assets/dc5fb4c9-a551-40d3-91bf-dde5ecfcfc03" />
+<h3 align="center">System Architecture</h3>
+<p align="center">
+  <img src="https://mermaid.ink/img/pako:eNp1kcFqwzAMhl8l6NRC-wI9FHYY5DB22G2HImqsxLA1jnYyhLz7nLRdh-2kJP_360syWq0CI_ro9qfR-8eZg8-WF8eO0e2P_sO9489QjLw7vLhC-1O8Q_f1e4uW5y_wQo1gQYc-B_0S9Cg4EBy2lBw4WnJ09OToKDiScqT_Q46M44-WnBw5WnJ09OToKDhScqT_Q46M40_2_wE4_gGjS07w?type=png&bgColor=333" alt="Architecture Diagram" width="100%" style="max-width: 600px; height: auto;" />
+</p>
 
 
 ##  Features
