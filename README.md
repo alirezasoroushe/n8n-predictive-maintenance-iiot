@@ -5,20 +5,22 @@ A real-time condition monitoring system that bridges the gap between **Operation
 <img width="7011" height="1811" alt="IIoT Predictive Maintenance Digital Twin" src="https://github.com/user-attachments/assets/dc5fb4c9-a551-40d3-91bf-dde5ecfcfc03" />
 
 
-## 🚀 Features
+##  Features
 - **Real-Time Ingestion:** Subscribes to MQTT topics (`factory/machine_01/`) using a local Mosquitto broker.
 - **Logic Orchestration:** Uses **n8n** to process data streams and detect anomalies (>85°C).
 - **Automated Alerts:** Dispatches instant Email/Slack notifications to maintenance teams.
 - **Historical Logging:** Appends telemetry data to a Cloud Database (Google Sheets) for audit trails.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - **Orchestration:** n8n (Self-hosted via Docker)
 - **Protocol:** MQTT (Mosquitto Broker)
 - **Database:** Google Sheets API
 - **Containerization:** Docker
 
-## 📸 Screenshots
-*(Upload your graph screenshot here later)*
+##  Screenshots
+<img width="1917" height="806" alt="temperature chart1" src="https://github.com/user-attachments/assets/a73b4df2-0f2f-4571-ab5d-a59c2a646aa7" />
+<img width="1915" height="770" alt="temperature chart2" src="https://github.com/user-attachments/assets/c3075562-3448-40d3-82b2-dd5a21ad1dc6" />
+
 
 ## 🔧 How to Run
 1. Import `predictive-maintenance-workflow.json` into your n8n instance.
