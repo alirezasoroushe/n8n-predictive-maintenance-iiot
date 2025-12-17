@@ -18,6 +18,8 @@ A real-time condition monitoring system that bridges the gap between **Operation
 - **Containerization:** Docker
 
 ##  Screenshots
+<img width="1606" height="682" alt="Predictive Maintenance Monitor" src="https://github.com/user-attachments/assets/ee2c6618-d5ec-4786-bed7-c68d914dc456" />
+<img width="1613" height="674" alt="Machine Simulator" src="https://github.com/user-attachments/assets/bd2d7bd7-6b25-4be1-8af7-81624ea70eb5" />
 <img width="1917" height="806" alt="temperature chart1" src="https://github.com/user-attachments/assets/a73b4df2-0f2f-4571-ab5d-a59c2a646aa7" />
 <img width="1915" height="770" alt="temperature chart2" src="https://github.com/user-attachments/assets/c3075562-3448-40d3-82b2-dd5a21ad1dc6" />
 
