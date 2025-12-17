@@ -4,7 +4,7 @@ A real-time condition monitoring system that bridges the gap between **Operation
 
 <h3 align="center">System Architecture</h3>
 <p align="center">
-  <img src="IIoT Predictive Maintenance Digital Twin.png" width="100" style=max-width: 600px; height: auto;"/>
+  <img src="IIoT%20Predictive%20Maintenance%20Digital%20Twin.png" width="100%" style="max-width: 600px; height: auto;" />
 </p>
 
 
