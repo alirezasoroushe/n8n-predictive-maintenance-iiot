@@ -1,0 +1,221 @@
+{
+  "name": "Predictive Maintenance Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "topics": "factory/machine_01/sensor_data",
+        "options": {
+          "jsonParseBody": true,
+          "onlyMessage": false
+        }
+      },
+      "type": "n8n-nodes-base.mqttTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1d31de60-3fa5-40d5-bf1c-c89470d1b649",
+      "name": "MQTT Trigger",
+      "credentials": {
+        "mqtt": {
+          "id": "H3IaW3xmUZu8JPL0",
+          "name": "MQTT account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a476516f-ef64-431d-824e-5f43f440ebbf",
+              "leftValue": "={{ $json.message.temperature }}",
+              "rightValue": 85,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "38af6791-458c-48ea-8c99-a4cf1c8fc680",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1iQ4ipVEyhIQdqcu7hbYUrU7atdh3McLwP3N8bylRQzM",
+          "mode": "list",
+          "cachedResultName": "YOUR_SHEET_NAME",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iQ4ipVEyhIQdqcu7hbYUrU7atdh3McLwP3N8bylRQzM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iQ4ipVEyhIQdqcu7hbYUrU7atdh3McLwP3N8bylRQzM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Time": "={{ $now }}",
+            "Machine": "={{ $json.message.machine_id }}",
+            "Temperature": "={{ $json.message.temperature }}",
+            "Status": "OVERHEATING"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Machine",
+              "displayName": "Machine",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Temperature",
+              "displayName": "Temperature",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        480,
+        -16
+      ],
+      "id": "253c27b4-bfcd-4ebe-857d-87027b2e9915",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GPxZEefR86VgyPGp",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "user@example.com",
+        "subject": "🔥 CRITICAL: Machine Overheating",
+        "message": "=⚠️ ALERT: Machine 001 is at {{ $json.message.temperature }}°C.\nMaintenance crew dispatched.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        480,
+        -192
+      ],
+      "id": "3840d28f-fad5-4c9a-81b9-d0b1c203f0e5",
+      "name": "Send a message",
+      "webhookId": "9762c307-0ae0-43f4-9581-21735564a912",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "k3cVwg15QRUleCKz",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "MQTT Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "55659fb0-244f-4f91-a227-d7823a02c565",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "85d3c8155005bdbbe3f36aa04d07dc9f765be9b5909dc6203a71c63b82f0d3aa"
+  },
+  "id": "hlvGXNGl4szDH3uJ",
+  "tags": []
+}

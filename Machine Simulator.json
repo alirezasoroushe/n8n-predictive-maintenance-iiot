@@ -1,0 +1,98 @@
+{
+  "name": "Machine Simulator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f47766e6-9387-47c5-9de8-abb102cb6281",
+      "name": "Schedule Trigger",
+      "alwaysOutputData": false,
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "jsCode": "// Simulate temperature fluctuating between 60 and 95 degrees\nconst temp = Math.floor(Math.random() * (95 - 60 + 1) + 60);\nconst machine_id = \"press_001\";\n\nreturn {\n  json: {\n    temperature: temp,\n    machine_id: machine_id,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1e5e6949-6f9b-481f-a5ac-ee212242aff1",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "topic": "factory/machine_01/sensor_data",
+        "sendInputData": false,
+        "message": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mqtt",
+      "typeVersion": 1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "f84b4ead-a4a5-457a-8ee5-8f4b386adc9b",
+      "name": "MQTT",
+      "credentials": {
+        "mqtt": {
+          "id": "H3IaW3xmUZu8JPL0",
+          "name": "MQTT account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "MQTT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "31e84c8c-7a2a-49d8-9e21-440ca9a5ac2d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "85d3c8155005bdbbe3f36aa04d07dc9f765be9b5909dc6203a71c63b82f0d3aa"
+  },
+  "id": "VwswtEhXtJMCPgRp",
+  "tags": []
+}
