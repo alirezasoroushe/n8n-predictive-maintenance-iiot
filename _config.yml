@@ -1,3 +1,5 @@
 theme: jekyll-theme-minimal
 title: IIoT Predictive Maintenance
 description: Real-time condition monitoring with n8n and MQTT
+logo: https://github.com/user-attachments/assets/ee2c6618-d5ec-4786-bed7-c68d914dc456
+show_downloads: false
